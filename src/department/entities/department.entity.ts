@@ -11,7 +11,7 @@ export class Department {
     @Column()
     description: string;
 
-    // Many departments can be managed by one department (nullable: true), for the top-most level
+    // Many departments can be managed by one department (nullable true for the top-most level)
     @ManyToOne(() => Department, { nullable: true }) 
     managing_department: number;
 }

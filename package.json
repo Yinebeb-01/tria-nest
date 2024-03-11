@@ -1,8 +1,8 @@
 {
   "name": "tria-nest",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "tria-nest-description",
+  "author": "yinebeb",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
