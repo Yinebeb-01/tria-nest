@@ -1,13 +1,28 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { DepartmentService } from './department.service';
 import { CreateDepartmentDto } from './dto/create-department.dto';
 import { UpdateDepartmentDto } from './dto/update-department.dto';
+import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
+import { Department } from './entities/department.entity';
 
+@ApiTags('department')
 @Controller('department')
 export class DepartmentController {
   constructor(private readonly departmentService: DepartmentService) {}
 
   @Post()
+  @ApiCreatedResponse({
+    description: 'Department has been successfully created.',
+    type: Department,
+  })
   create(@Body() createDepartmentDto: CreateDepartmentDto) {
     return this.departmentService.create(createDepartmentDto);
   }
@@ -23,12 +38,25 @@ export class DepartmentController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDepartmentDto: UpdateDepartmentDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateDepartmentDto: UpdateDepartmentDto,
+  ) {
     return this.departmentService.update(+id, updateDepartmentDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.departmentService.remove(+id);
+  }
+
+  @Get(':id/child')
+  findHierarchay(@Param('id') id: string) {
+    return this.departmentService.getChildDepartment(+id);
+  }
+
+  @Get(':id/parent')
+  findParent(@Param('id') id: string) {
+    return this.departmentService.getParentDepartment(+id);
   }
 }
