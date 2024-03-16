@@ -1,20 +1,25 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { ApiProperty } from '@nestjs/swagger';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Department {
-    @PrimaryGeneratedColumn()
-    id:  number;
+  @ApiProperty()
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    name: string;
+  @ApiProperty()
+  @Column()
+  name: string;
 
-    @Column()
-    description: string;
+  @Column()
+  @ApiProperty()
+  description: string;
 
-    // fixme: unable to load foregin key
-    // Many departments can be managed by one department (nullable true for the top-most level)
-    // @ManyToOne( () => Department, {eager:true }) 
-    // @JoinColumn({name:"managing_department"})
-    @Column({ nullable: true })
-    managing_department: number;
+  // fixme: unable to load foregin key
+  // Many departments can be managed by one department (nullable true for the top-most level)
+  // @ManyToOne( () => Department, {eager:true })
+  // @JoinColumn({name:"managing_department"})
+  @Column({ nullable: true })
+  @ApiProperty()
+  managing_department: number;
 }

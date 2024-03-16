@@ -10,6 +10,8 @@ REST API built with [Nest](https://github.com/nestjs/nest). The avaiable REST AP
 
 ### Usage(Example):
 
+**Follow [swagger docs](http://localhost:3000/api)**
+
 1. **Create new department**
 
 ```curl
