@@ -47,4 +47,9 @@ export class DepartmentController {
   findHierarchay(@Param('id') id: string) {
     return this.departmentService.getChildDepartment(+id);
   }
+
+  @Get(':id/parent')
+  findParent(@Param('id') id: string) {
+    return this.departmentService.getParentDepartment(+id);
+  }
 }

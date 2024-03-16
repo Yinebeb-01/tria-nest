@@ -75,4 +75,16 @@ export class DepartmentService {
 
     return result[0].hierarchy;
   }
+
+  async getParentDepartment(departmentId: number) {
+    const result = await this.departmentRepository.query(
+      `
+      SELECT parent.id, parent.name, parent.description FROM department join department parent on department.managing_department=parent.id
+      where department.id=?;
+  `,
+      [departmentId],
+    );
+
+    return result[0];
+  }
 }
