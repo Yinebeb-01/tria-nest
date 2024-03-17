@@ -97,6 +97,22 @@ curl --location 'http://localhost:3000/department/2/child'
 
 ## Installation
 
+### Use Docker
+
+```bash
+docker build -t nest-app
+```
+
+```bash
+docker run --network host -p 3000:3000 nest-app`
+```
+
+### Use docker-compose
+
+```bash
+docker-compose up --build
+```
+
 ```bash
 $ npm install
 ```
