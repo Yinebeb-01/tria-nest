@@ -95,29 +95,25 @@ GET /department/:id/child
 curl --location 'http://localhost:3000/department/2/child'
 ```
 
-## Installation
+## Usage
 
-### Use Docker
+### Docker-compose
 
 ```bash
-docker build -t nest-app
+docker-compose up --build
+```
+
+### Docker
+
+```bash
+docker build -t nest-app .
 ```
 
 ```bash
 docker run --network host -p 3000:3000 nest-app`
 ```
 
-### Use docker-compose
-
-```bash
-docker-compose up --build
-```
-
-```bash
-$ npm install
-```
-
-## Running the app
+### NPM
 
 ```bash
 # development
@@ -130,7 +126,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+### Test
 
 ```bash
 # unit tests
@@ -148,13 +144,3 @@ $ npm run test:cov
 - Author - [Yinebeb Tariku](mailto:yintar5@gmail.com)
 - Website - [Linkedin.com](https://linkedin.com/in/yinebeb-tariku)
 - Twitter - [@sil_enat](https://twitter.com/sil_enat)
-
-## Notes
-
-- Add resource, for example `department`:
-
-  `nest g resource <resource-name>`
-
-- Install orm dependencies, for example for myswl:
-
-  `npm install --save @nestjs/typeorm typeorm mysql2`
