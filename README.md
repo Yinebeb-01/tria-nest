@@ -1,16 +1,14 @@
 # Backend - Nest
 
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
 
 ## Description
 
 REST API built with [Nest](https://github.com/nestjs/nest). The avaiable REST API is only for Departmet and all apis are ready.
 
-### Usage(Example):
+## Usage(Example):
 
-**Follow [swagger docs](http://localhost:3000/api)**
+**[swagger docs](http://localhost:3001/api)**
 
 1. **Create new department**
 
@@ -95,7 +93,7 @@ GET /department/:id/child
 curl --location 'http://localhost:3000/department/2/child'
 ```
 
-## Usage
+## Run the App
 
 ### Docker-compose
 
