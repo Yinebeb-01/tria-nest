@@ -15,10 +15,6 @@ export class Department {
   @ApiProperty()
   description: string;
 
-  // fixme: unable to load foregin key
-  // Many departments can be managed by one department (nullable true for the top-most level)
-  // @ManyToOne( () => Department, {eager:true })
-  // @JoinColumn({name:"managing_department"})
   @Column({ nullable: true })
   @ApiProperty()
   managing_department: number;

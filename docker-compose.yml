@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  nest-app:
+    build: .
+    command: ["npm", "run", "start:dev"]
+    ports:
+      - "3001:3001"
+    working_dir: /app
+    volumes:
+      - ./:/app
+    depends_on:
+      - mysql
+
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: Abcd1234@
+      MYSQL_DB: test
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: Abcd1234@
+    ports:
+      - "3316:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
