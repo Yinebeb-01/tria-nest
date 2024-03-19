@@ -50,7 +50,7 @@ $ npm run start:prod
   nest g resource <resource-name>`
 ```
 
-* Install Typorm dependencies, 
+* Install Typeorm dependencies, 
   - mysql:
 
     `npm install --save @nestjs/typeorm typeorm mysql2`

@@ -11,7 +11,7 @@ async function bootstrap() {
   });
 
   const config = new DocumentBuilder()
-    .setTitle('Tria-api')
+    .setTitle('Nest-api')
     .setDescription('Department module API description')
     .setVersion('0.1.0')
     .build();
