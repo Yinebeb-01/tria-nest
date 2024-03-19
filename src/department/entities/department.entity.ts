@@ -1,11 +1,17 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Department {
   @ApiProperty()
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @ApiProperty()
   @Column()
@@ -15,11 +21,11 @@ export class Department {
   @ApiProperty()
   description: string;
 
-  // fixme: unable to load foregin key
-  // Many departments can be managed by one department (nullable true for the top-most level)
-  // @ManyToOne( () => Department, {eager:true })
-  // @JoinColumn({name:"managing_department"})
   @Column({ nullable: true })
   @ApiProperty()
-  managing_department: number;
+  managing_department: string;
+
+  @ManyToOne(() => Department, { nullable: true })
+  @JoinColumn({ name: 'managing_department' })
+  managingDepartment: Department;
 }

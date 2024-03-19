@@ -21,7 +21,7 @@ export class DepartmentService {
     return this.departmentRepository.find();
   }
 
-  async findOne(id: number): Promise<Department | null> {
+  async findOne(id: string): Promise<Department | null> {
     const dept = await this.departmentRepository.findOneBy({ id });
     if (!dept) {
       throw new NotFoundException(`Department with ID ${id} not found`);
@@ -30,7 +30,7 @@ export class DepartmentService {
   }
 
   async update(
-    id: number,
+    id: string,
     updateDepartmentDto: UpdateDepartmentDto,
   ): Promise<Department | undefined> {
     const department = await this.departmentRepository.findOneBy({ id });
@@ -45,7 +45,7 @@ export class DepartmentService {
     return this.departmentRepository.save(department);
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     const department = await this.departmentRepository.findOneBy({ id });
     if (!department) {
       throw new NotFoundException(`Department with ID ${id} not found`);
@@ -53,7 +53,7 @@ export class DepartmentService {
     await this.departmentRepository.delete(id);
   }
 
-  async getChildDepartment(departmentId: number) {
+  async getChildDepartment(departmentId: string) {
     const result = await this.departmentRepository.query(
       `
     SELECT JSON_OBJECT(
@@ -76,7 +76,7 @@ export class DepartmentService {
     return result[0].hierarchy;
   }
 
-  async getParentDepartment(departmentId: number) {
+  async getParentDepartment(departmentId: string) {
     const result = await this.departmentRepository.query(
       `
       SELECT parent.id, parent.name, parent.description FROM department join department parent on department.managing_department=parent.id
