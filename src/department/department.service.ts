@@ -53,10 +53,8 @@ export class DepartmentService {
     await this.departmentRepository.delete(id);
   }
 
-  async getChildDepartment(departmentId: string) {
-    const result = await this.departmentRepository.query(
-      `
-    SELECT JSON_OBJECT(
+  /* Mysql-Query:
+  `SELECT JSON_OBJECT(
           'name', department.name, 
           'description', department.description,
           'child', IF(count(child.id > 0), JSON_ARRAYAGG(
@@ -69,18 +67,36 @@ export class DepartmentService {
           LEFT JOIN department AS child ON 
               department.id = child.managing_department
     WHERE department.id = ?;
-  `,
+  `
+  */
+  async getChildDepartment(departmentId: string) {
+    const result = await this.departmentRepository.query(
+      `SELECT json_build_object(
+  'name', department.name,
+  'description', department.description,
+  'child', CASE
+               WHEN count(child.id) > 0 THEN json_agg(
+                       json_build_object(
+                               'name', child.name,
+                               'description', child.description
+                       )
+                                             )
+               ELSE '[]'
+      END
+) AS hierarchy FROM department LEFT JOIN department AS child ON
+department.id = child. managing_department WHERE department.id = $1 GROUP BY department.name, department.description;`,
       [departmentId],
     );
 
     return result[0].hierarchy;
   }
 
+  // Mysql- change '?' to '$1'
   async getParentDepartment(departmentId: string) {
     const result = await this.departmentRepository.query(
       `
       SELECT parent.id, parent.name, parent.description FROM department join department parent on department.managing_department=parent.id
-      where department.id=?;
+      where department.id=$1;
   `,
       [departmentId],
     );
