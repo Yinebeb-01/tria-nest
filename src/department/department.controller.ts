@@ -34,7 +34,7 @@ export class DepartmentController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.departmentService.findOne(+id);
+    return this.departmentService.findOne(id);
   }
 
   @Patch(':id')
@@ -42,21 +42,21 @@ export class DepartmentController {
     @Param('id') id: string,
     @Body() updateDepartmentDto: UpdateDepartmentDto,
   ) {
-    return this.departmentService.update(+id, updateDepartmentDto);
+    return this.departmentService.update(id, updateDepartmentDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.departmentService.remove(+id);
+    return this.departmentService.remove(id);
   }
 
   @Get(':id/child')
   findHierarchay(@Param('id') id: string) {
-    return this.departmentService.getChildDepartment(+id);
+    return this.departmentService.getChildDepartment(id);
   }
 
   @Get(':id/parent')
   findParent(@Param('id') id: string) {
-    return this.departmentService.getParentDepartment(+id);
+    return this.departmentService.getParentDepartment(id);
   }
 }

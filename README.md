@@ -2,96 +2,14 @@
 
 <a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
 
-## Description
-
 REST API built with [Nest](https://github.com/nestjs/nest). The avaiable REST API is only for Departmet and all apis are ready.
 
-## Usage(Example):
 
-**[swagger docs](http://localhost:3001/api)**
+## Usage
 
-1. **Create new department**
+**Follow the [swagger API documentation](http://localhost:3001/api)**
 
-```curl
-POST /department
-```
-
-- Example
-
-```curl
-curl --location 'http://localhost:3000/department' \
---header 'Content-Type: application/json' \
---data '{
-    "name": "COO",
-    "description": "coo department description",
-    "managing_department": 1
-}'
-```
-
-2. **Update department**
-
-```curl
-PATCH /department:id
-```
-
-- Example
-
-```curl
-curl --location --request PATCH 'http://localhost:3000/department/3' \
---header 'Content-Type: application/json' \
---data '{
-    "name": "COO",
-    "description": "updated-coo department description",
-    "managing_department": 1
-}'
-```
-
-3. **Get department by ID**
-
-```curl
-GET /department/:id
-```
-
-- Example
-
-```curl
-curl --location 'http://localhost:3000/department/2'
-```
-
-4. **Delete department**
-
-```curl
-DELETE /department/:id
-```
-
-- Example
-
-```curl
-curl --location --request DELETE 'http://localhost:3000/department/2'
-```
-
-5. **Get all department**
-
-````curl
-GET /department
-
-- Example
-
-```curl
-curl --location 'http://localhost:3000/department'
-````
-
-6. **Get Child Department**
-
-```curl
-GET /department/:id/child
-```
-
-- Example
-
-```curl
-curl --location 'http://localhost:3000/department/2/child'
-```
+  - Note: Make sure the server is running, or run via `npm run start:dev`
 
 ## Run the App
 
@@ -124,18 +42,23 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-### Test
+## Instalation
+
+* Add resource, for example `department`:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+  nest g resource <resource-name>`
 ```
+
+* Install Typorm dependencies, 
+  - mysql:
+
+    `npm install --save @nestjs/typeorm typeorm mysql2`
+
+  - Postgres Version
+
+    `npm install pg --save`
+
 
 ## Stay in touch
 

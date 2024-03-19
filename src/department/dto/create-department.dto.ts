@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateDepartmentDto {
-  id: number;
+  id: string;
   @ApiProperty({
     description: 'Name of department',
   })
@@ -13,5 +13,5 @@ export class CreateDepartmentDto {
   @ApiProperty({
     description: 'Managing department id',
   })
-  managing_department: number;
+  managing_department: string;
 }
